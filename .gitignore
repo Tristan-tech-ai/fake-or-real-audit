@@ -1,0 +1,26 @@
+# Dataset dan arsip, puluhan gigabyte
+data/
+noise/
+forks/
+*.tar
+*.tar.gz
+*.zip
+
+# Bobot model
+ckpt/
+*.pt
+*.pth
+
+# Cache
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.hf_cache/
+*.egg-info/
+
+# Log mentah
+*.log
+
+# Fitur audit berukuran besar, dapat dihitung ulang dari dataset
+audit_features.csv

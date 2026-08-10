@@ -1,0 +1,47 @@
+[project]
+name = "forensik"
+version = "1.0.0"
+description = "Audit of audio deepfake detection on the Fake-or-Real dataset"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "scikit-learn>=1.4",
+    "matplotlib>=3.8",
+    "reportlab>=4.0",
+    "pillow>=10.0",
+    "soundfile>=0.12",
+]
+
+[project.optional-dependencies]
+train = ["torch>=2.2", "torchaudio>=2.2", "transformers>=4.40"]
+dev = ["pytest>=8.0", "ruff>=0.6", "pypdf>=4.0"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["forensik*"]
+
+[tool.ruff]
+line-length = 90
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "C4", "RET", "ARG"]
+ignore = [
+    "E501",   # panjang baris diurus formatter
+    "B008",   # argumen bawaan berupa pemanggilan dipakai sengaja pada Path
+]
+
+[tool.ruff.lint.per-file-ignores]
+"forensik/laporan/*.py" = ["E402"]
+"forensik/audit/*.py" = ["E402"]
+"forensik/evaluasi/*.py" = ["E402"]
+"forensik/naskah/build.py" = ["E402"]
+"tests/*.py" = ["ARG"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
